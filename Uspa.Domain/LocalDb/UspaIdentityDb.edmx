@@ -1,0 +1,1349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="UspaIdentityDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="ContextKey" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Model" Type="varbinary(max)" Nullable="false" />
+          <Property Name="ProductVersion" Type="nvarchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Albums">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" />
+          <Property Name="previd" Type="int" Nullable="false" />
+          <Property Name="created" Type="datetime" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="createdByUser_Id" Type="nvarchar" MaxLength="128" />
+          <Property Name="language_id" Type="int" />
+          <Property Name="modifiedByUser_Id" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Banners">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" />
+          <Property Name="url" Type="nvarchar(max)" />
+          <Property Name="state" Type="bit" Nullable="false" />
+          <Property Name="site_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" />
+          <Property Name="previd" Type="int" Nullable="false" />
+          <Property Name="createdTime" Type="datetime" />
+          <Property Name="published" Type="bit" Nullable="false" />
+          <Property Name="createdByUser_Id" Type="nvarchar" MaxLength="128" />
+          <Property Name="language_id" Type="int" />
+        </EntityType>
+        <EntityType Name="CategoryToRole">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="CategoryId" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contents">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="previd" Type="int" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" />
+          <Property Name="introtext" Type="nvarchar(max)" />
+          <Property Name="fulltext" Type="nvarchar(max)" />
+          <Property Name="state" Type="bit" Nullable="false" />
+          <Property Name="created" Type="datetime" />
+          <Property Name="modified" Type="datetime" />
+          <Property Name="published" Type="datetime" />
+          <Property Name="checkIn" Type="datetime" />
+          <Property Name="checkOut" Type="datetime" />
+          <Property Name="category_id" Type="int" />
+          <Property Name="createdByUser_Id" Type="nvarchar" MaxLength="128" />
+          <Property Name="modifiedByUser_Id" Type="nvarchar" MaxLength="128" />
+          <Property Name="site_id" Type="int" />
+        </EntityType>
+        <EntityType Name="IdentityRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IdentityUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="IdentityUserLogins">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="LoginProvider" Type="nvarchar(max)" />
+          <Property Name="ProviderKey" Type="nvarchar(max)" />
+          <Property Name="User_Id" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="IdentityUserRoles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="RoleId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="IdentityRole_Id" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" />
+          <Property Name="filePath" Type="nvarchar(max)" />
+          <Property Name="created" Type="datetime" />
+          <Property Name="state" Type="bit" Nullable="false" />
+          <Property Name="album_id" Type="int" />
+          <Property Name="createdByUser_Id" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Languages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Menus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="previd" Type="int" Nullable="false" />
+          <Property Name="parentidPrev" Type="int" />
+          <Property Name="parentid" Type="int" />
+          <Property Name="title" Type="nvarchar(max)" />
+          <Property Name="state" Type="bit" Nullable="false" />
+          <Property Name="menuType_id" Type="bigint" />
+          <Property Name="site_id" Type="int" />
+          <Property Name="сontent_id" Type="int" />
+        </EntityType>
+        <EntityType Name="MenuTypes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Sites">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar(max)" />
+          <Property Name="countContent" Type="int" Nullable="false" />
+          <Property Name="language_id" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="prevId" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar(max)" />
+          <Property Name="registerDate" Type="datetime" />
+          <Property Name="lastVisitDate" Type="datetime" />
+          <Property Name="block" Type="bit" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_dbo_Albums_dbo_Languages_language_id">
+          <End Role="Languages" Type="Self.Languages" Multiplicity="0..1" />
+          <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Languages">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Albums">
+              <PropertyRef Name="language_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Albums_dbo_Users_createdByUser_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Albums">
+              <PropertyRef Name="createdByUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Albums_dbo_Users_modifiedByUser_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Albums">
+              <PropertyRef Name="modifiedByUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Banners_dbo_Sites_site_id">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+          <End Role="Banners" Type="Self.Banners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Banners">
+              <PropertyRef Name="site_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Categories_dbo_Languages_language_id">
+          <End Role="Languages" Type="Self.Languages" Multiplicity="0..1" />
+          <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Languages">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Categories">
+              <PropertyRef Name="language_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Categories_dbo_Users_createdByUser_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Categories">
+              <PropertyRef Name="createdByUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CategoryToRole_dbo_Categories_RoleId">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CategoryToRole" Type="Self.CategoryToRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CategoryToRole">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CategoryToRole_dbo_IdentityRoles_CategoryId">
+          <End Role="IdentityRoles" Type="Self.IdentityRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CategoryToRole" Type="Self.CategoryToRole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentityRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CategoryToRole">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Contents_dbo_Categories_category_id">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Contents" Type="Self.Contents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Contents_dbo_Sites_site_id">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+          <End Role="Contents" Type="Self.Contents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="site_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Contents_dbo_Users_createdByUser_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Contents" Type="Self.Contents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="createdByUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Contents_dbo_Users_modifiedByUser_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Contents" Type="Self.Contents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="modifiedByUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserClaims_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="IdentityUserClaims" Type="Self.IdentityUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserLogins_dbo_Users_User_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="IdentityUserLogins" Type="Self.IdentityUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserLogins">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id">
+          <End Role="IdentityRoles" Type="Self.IdentityRoles" Multiplicity="0..1" />
+          <End Role="IdentityUserRoles" Type="Self.IdentityUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentityRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRoles">
+              <PropertyRef Name="IdentityRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserRoles_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IdentityUserRoles" Type="Self.IdentityUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Images_dbo_Albums_album_id">
+          <End Role="Albums" Type="Self.Albums" Multiplicity="0..1" />
+          <End Role="Images" Type="Self.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Albums">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="album_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Images_dbo_Users_createdByUser_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Images" Type="Self.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="createdByUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Menus_dbo_Contents_сontent_id">
+          <End Role="Contents" Type="Self.Contents" Multiplicity="0..1" />
+          <End Role="Menus" Type="Self.Menus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contents">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Menus">
+              <PropertyRef Name="сontent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Menus_dbo_MenuTypes_menuType_id">
+          <End Role="MenuTypes" Type="Self.MenuTypes" Multiplicity="0..1" />
+          <End Role="Menus" Type="Self.Menus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuTypes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Menus">
+              <PropertyRef Name="menuType_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Menus_dbo_Sites_site_id">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+          <End Role="Menus" Type="Self.Menus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Menus">
+              <PropertyRef Name="site_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Sites_dbo_Languages_language_id">
+          <End Role="Languages" Type="Self.Languages" Multiplicity="0..1" />
+          <End Role="Sites" Type="Self.Sites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Languages">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sites">
+              <PropertyRef Name="language_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="UspaIdentityDbModelStoreContainer">
+          <EntitySet Name="__MigrationHistory" EntityType="Self.__MigrationHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Albums" EntityType="Self.Albums" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Banners" EntityType="Self.Banners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CategoryToRole" EntityType="Self.CategoryToRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contents" EntityType="Self.Contents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityRoles" EntityType="Self.IdentityRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityUserClaims" EntityType="Self.IdentityUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityUserLogins" EntityType="Self.IdentityUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IdentityUserRoles" EntityType="Self.IdentityUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Images" EntityType="Self.Images" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Languages" EntityType="Self.Languages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menus" EntityType="Self.Menus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuTypes" EntityType="Self.MenuTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sites" EntityType="Self.Sites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Albums_dbo_Languages_language_id" Association="Self.FK_dbo_Albums_dbo_Languages_language_id">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="Albums" EntitySet="Albums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Albums_dbo_Users_createdByUser_Id" Association="Self.FK_dbo_Albums_dbo_Users_createdByUser_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Albums" EntitySet="Albums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Albums_dbo_Users_modifiedByUser_Id" Association="Self.FK_dbo_Albums_dbo_Users_modifiedByUser_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Albums" EntitySet="Albums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Banners_dbo_Sites_site_id" Association="Self.FK_dbo_Banners_dbo_Sites_site_id">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Banners" EntitySet="Banners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Categories_dbo_Languages_language_id" Association="Self.FK_dbo_Categories_dbo_Languages_language_id">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Categories_dbo_Users_createdByUser_Id" Association="Self.FK_dbo_Categories_dbo_Users_createdByUser_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CategoryToRole_dbo_Categories_RoleId" Association="Self.FK_dbo_CategoryToRole_dbo_Categories_RoleId">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="CategoryToRole" EntitySet="CategoryToRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CategoryToRole_dbo_IdentityRoles_CategoryId" Association="Self.FK_dbo_CategoryToRole_dbo_IdentityRoles_CategoryId">
+            <End Role="IdentityRoles" EntitySet="IdentityRoles" />
+            <End Role="CategoryToRole" EntitySet="CategoryToRole" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Contents_dbo_Categories_category_id" Association="Self.FK_dbo_Contents_dbo_Categories_category_id">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Contents_dbo_Sites_site_id" Association="Self.FK_dbo_Contents_dbo_Sites_site_id">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Contents_dbo_Users_createdByUser_Id" Association="Self.FK_dbo_Contents_dbo_Users_createdByUser_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Contents_dbo_Users_modifiedByUser_Id" Association="Self.FK_dbo_Contents_dbo_Users_modifiedByUser_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserClaims_dbo_Users_UserId" Association="Self.FK_dbo_IdentityUserClaims_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="IdentityUserClaims" EntitySet="IdentityUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserLogins_dbo_Users_User_Id" Association="Self.FK_dbo_IdentityUserLogins_dbo_Users_User_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="IdentityUserLogins" EntitySet="IdentityUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id" Association="Self.FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id">
+            <End Role="IdentityRoles" EntitySet="IdentityRoles" />
+            <End Role="IdentityUserRoles" EntitySet="IdentityUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserRoles_dbo_Users_UserId" Association="Self.FK_dbo_IdentityUserRoles_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="IdentityUserRoles" EntitySet="IdentityUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Images_dbo_Albums_album_id" Association="Self.FK_dbo_Images_dbo_Albums_album_id">
+            <End Role="Albums" EntitySet="Albums" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Images_dbo_Users_createdByUser_Id" Association="Self.FK_dbo_Images_dbo_Users_createdByUser_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Menus_dbo_Contents_сontent_id" Association="Self.FK_dbo_Menus_dbo_Contents_сontent_id">
+            <End Role="Contents" EntitySet="Contents" />
+            <End Role="Menus" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Menus_dbo_MenuTypes_menuType_id" Association="Self.FK_dbo_Menus_dbo_MenuTypes_menuType_id">
+            <End Role="MenuTypes" EntitySet="MenuTypes" />
+            <End Role="Menus" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Menus_dbo_Sites_site_id" Association="Self.FK_dbo_Menus_dbo_Sites_site_id">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Menus" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Sites_dbo_Languages_language_id" Association="Self.FK_dbo_Sites_dbo_Languages_language_id">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="Sites" EntitySet="Sites" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UspaIdentityDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__MigrationHistory">
+          <Key>
+            <PropertyRef Name="MigrationId" />
+            <PropertyRef Name="ContextKey" />
+          </Key>
+          <Property Name="MigrationId" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContextKey" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Model" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="ProductVersion" Type="String" MaxLength="32" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Albums">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="previd" Type="Int32" Nullable="false" />
+          <Property Name="created" Type="DateTime" Precision="3" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="createdByUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="language_id" Type="Int32" />
+          <Property Name="modifiedByUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Languages" Relationship="Self.FK_dbo_Albums_dbo_Languages_language_id" FromRole="Albums" ToRole="Languages" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Albums_dbo_Users_createdByUser_Id" FromRole="Albums" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK_dbo_Albums_dbo_Users_modifiedByUser_Id" FromRole="Albums" ToRole="Users" />
+          <NavigationProperty Name="Images" Relationship="Self.FK_dbo_Images_dbo_Albums_album_id" FromRole="Albums" ToRole="Images" />
+        </EntityType>
+        <EntityType Name="Banners">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Boolean" Nullable="false" />
+          <Property Name="site_id" Type="Int32" />
+          <NavigationProperty Name="Sites" Relationship="Self.FK_dbo_Banners_dbo_Sites_site_id" FromRole="Banners" ToRole="Sites" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="previd" Type="Int32" Nullable="false" />
+          <Property Name="createdTime" Type="DateTime" Precision="3" />
+          <Property Name="published" Type="Boolean" Nullable="false" />
+          <Property Name="createdByUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="language_id" Type="Int32" />
+          <NavigationProperty Name="Languages" Relationship="Self.FK_dbo_Categories_dbo_Languages_language_id" FromRole="Categories" ToRole="Languages" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Categories_dbo_Users_createdByUser_Id" FromRole="Categories" ToRole="Users" />
+          <NavigationProperty Name="Contents" Relationship="Self.FK_dbo_Contents_dbo_Categories_category_id" FromRole="Categories" ToRole="Contents" />
+          <NavigationProperty Name="IdentityRoles" Relationship="Self.CategoryToRole" FromRole="Categories" ToRole="IdentityRoles" />
+        </EntityType>
+        <EntityType Name="Contents">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="previd" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="introtext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="fulltext" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Boolean" Nullable="false" />
+          <Property Name="created" Type="DateTime" Precision="3" />
+          <Property Name="modified" Type="DateTime" Precision="3" />
+          <Property Name="published" Type="DateTime" Precision="3" />
+          <Property Name="checkIn" Type="DateTime" Precision="3" />
+          <Property Name="checkOut" Type="DateTime" Precision="3" />
+          <Property Name="category_id" Type="Int32" />
+          <Property Name="createdByUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="modifiedByUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="site_id" Type="Int32" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK_dbo_Contents_dbo_Categories_category_id" FromRole="Contents" ToRole="Categories" />
+          <NavigationProperty Name="Sites" Relationship="Self.FK_dbo_Contents_dbo_Sites_site_id" FromRole="Contents" ToRole="Sites" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Contents_dbo_Users_createdByUser_Id" FromRole="Contents" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK_dbo_Contents_dbo_Users_modifiedByUser_Id" FromRole="Contents" ToRole="Users" />
+          <NavigationProperty Name="Menus" Relationship="Self.FK_dbo_Menus_dbo_Contents_сontent_id" FromRole="Contents" ToRole="Menus" />
+        </EntityType>
+        <EntityType Name="IdentityRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Discriminator" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="IdentityUserRoles" Relationship="Self.FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id" FromRole="IdentityRoles" ToRole="IdentityUserRoles" />
+          <NavigationProperty Name="Categories" Relationship="Self.CategoryToRole" FromRole="IdentityRoles" ToRole="Categories" />
+        </EntityType>
+        <EntityType Name="IdentityUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_IdentityUserClaims_dbo_Users_UserId" FromRole="IdentityUserClaims" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="IdentityUserLogins">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LoginProvider" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="User_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_IdentityUserLogins_dbo_Users_User_Id" FromRole="IdentityUserLogins" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="IdentityUserRoles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="RoleId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdentityRole_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IdentityRoles" Relationship="Self.FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id" FromRole="IdentityUserRoles" ToRole="IdentityRoles" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_IdentityUserRoles_dbo_Users_UserId" FromRole="IdentityUserRoles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Images">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="filePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="created" Type="DateTime" Precision="3" />
+          <Property Name="state" Type="Boolean" Nullable="false" />
+          <Property Name="album_id" Type="Int32" />
+          <Property Name="createdByUser_Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Albums" Relationship="Self.FK_dbo_Images_dbo_Albums_album_id" FromRole="Images" ToRole="Albums" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Images_dbo_Users_createdByUser_Id" FromRole="Images" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Languages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Albums" Relationship="Self.FK_dbo_Albums_dbo_Languages_language_id" FromRole="Languages" ToRole="Albums" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK_dbo_Categories_dbo_Languages_language_id" FromRole="Languages" ToRole="Categories" />
+          <NavigationProperty Name="Sites" Relationship="Self.FK_dbo_Sites_dbo_Languages_language_id" FromRole="Languages" ToRole="Sites" />
+        </EntityType>
+        <EntityType Name="Menus">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="previd" Type="Int32" Nullable="false" />
+          <Property Name="parentidPrev" Type="Int32" />
+          <Property Name="parentid" Type="Int32" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="state" Type="Boolean" Nullable="false" />
+          <Property Name="menuType_id" Type="Int64" />
+          <Property Name="site_id" Type="Int32" />
+          <Property Name="сontent_id" Type="Int32" />
+          <NavigationProperty Name="Contents" Relationship="Self.FK_dbo_Menus_dbo_Contents_сontent_id" FromRole="Menus" ToRole="Contents" />
+          <NavigationProperty Name="MenuTypes" Relationship="Self.FK_dbo_Menus_dbo_MenuTypes_menuType_id" FromRole="Menus" ToRole="MenuTypes" />
+          <NavigationProperty Name="Sites" Relationship="Self.FK_dbo_Menus_dbo_Sites_site_id" FromRole="Menus" ToRole="Sites" />
+        </EntityType>
+        <EntityType Name="MenuTypes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Menus" Relationship="Self.FK_dbo_Menus_dbo_MenuTypes_menuType_id" FromRole="MenuTypes" ToRole="Menus" />
+        </EntityType>
+        <EntityType Name="Sites">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="countContent" Type="Int32" Nullable="false" />
+          <Property Name="language_id" Type="Int32" />
+          <NavigationProperty Name="Banners" Relationship="Self.FK_dbo_Banners_dbo_Sites_site_id" FromRole="Sites" ToRole="Banners" />
+          <NavigationProperty Name="Contents" Relationship="Self.FK_dbo_Contents_dbo_Sites_site_id" FromRole="Sites" ToRole="Contents" />
+          <NavigationProperty Name="Languages" Relationship="Self.FK_dbo_Sites_dbo_Languages_language_id" FromRole="Sites" ToRole="Languages" />
+          <NavigationProperty Name="Menus" Relationship="Self.FK_dbo_Menus_dbo_Sites_site_id" FromRole="Sites" ToRole="Menus" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="prevId" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="registerDate" Type="DateTime" Precision="3" />
+          <Property Name="lastVisitDate" Type="DateTime" Precision="3" />
+          <Property Name="block" Type="Boolean" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Albums" Relationship="Self.FK_dbo_Albums_dbo_Users_createdByUser_Id" FromRole="Users" ToRole="Albums" />
+          <NavigationProperty Name="Albums1" Relationship="Self.FK_dbo_Albums_dbo_Users_modifiedByUser_Id" FromRole="Users" ToRole="Albums" />
+          <NavigationProperty Name="Categories" Relationship="Self.FK_dbo_Categories_dbo_Users_createdByUser_Id" FromRole="Users" ToRole="Categories" />
+          <NavigationProperty Name="Contents" Relationship="Self.FK_dbo_Contents_dbo_Users_createdByUser_Id" FromRole="Users" ToRole="Contents" />
+          <NavigationProperty Name="Contents1" Relationship="Self.FK_dbo_Contents_dbo_Users_modifiedByUser_Id" FromRole="Users" ToRole="Contents" />
+          <NavigationProperty Name="IdentityUserClaims" Relationship="Self.FK_dbo_IdentityUserClaims_dbo_Users_UserId" FromRole="Users" ToRole="IdentityUserClaims" />
+          <NavigationProperty Name="IdentityUserLogins" Relationship="Self.FK_dbo_IdentityUserLogins_dbo_Users_User_Id" FromRole="Users" ToRole="IdentityUserLogins" />
+          <NavigationProperty Name="IdentityUserRoles" Relationship="Self.FK_dbo_IdentityUserRoles_dbo_Users_UserId" FromRole="Users" ToRole="IdentityUserRoles" />
+          <NavigationProperty Name="Images" Relationship="Self.FK_dbo_Images_dbo_Users_createdByUser_Id" FromRole="Users" ToRole="Images" />
+        </EntityType>
+        <Association Name="FK_dbo_Albums_dbo_Languages_language_id">
+          <End Role="Languages" Type="Self.Languages" Multiplicity="0..1" />
+          <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Languages">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Albums">
+              <PropertyRef Name="language_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Albums_dbo_Users_createdByUser_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Albums">
+              <PropertyRef Name="createdByUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Albums_dbo_Users_modifiedByUser_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Albums" Type="Self.Albums" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Albums">
+              <PropertyRef Name="modifiedByUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Images_dbo_Albums_album_id">
+          <End Role="Albums" Type="Self.Albums" Multiplicity="0..1" />
+          <End Role="Images" Type="Self.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Albums">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="album_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Banners_dbo_Sites_site_id">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+          <End Role="Banners" Type="Self.Banners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Banners">
+              <PropertyRef Name="site_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Categories_dbo_Languages_language_id">
+          <End Role="Languages" Type="Self.Languages" Multiplicity="0..1" />
+          <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Languages">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Categories">
+              <PropertyRef Name="language_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Categories_dbo_Users_createdByUser_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Categories">
+              <PropertyRef Name="createdByUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Contents_dbo_Categories_category_id">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1" />
+          <End Role="Contents" Type="Self.Contents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Contents_dbo_Sites_site_id">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+          <End Role="Contents" Type="Self.Contents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="site_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Contents_dbo_Users_createdByUser_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Contents" Type="Self.Contents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="createdByUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Contents_dbo_Users_modifiedByUser_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Contents" Type="Self.Contents" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Contents">
+              <PropertyRef Name="modifiedByUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Menus_dbo_Contents_сontent_id">
+          <End Role="Contents" Type="Self.Contents" Multiplicity="0..1" />
+          <End Role="Menus" Type="Self.Menus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contents">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Menus">
+              <PropertyRef Name="сontent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id">
+          <End Role="IdentityRoles" Type="Self.IdentityRoles" Multiplicity="0..1" />
+          <End Role="IdentityUserRoles" Type="Self.IdentityUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="IdentityRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRoles">
+              <PropertyRef Name="IdentityRole_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserClaims_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="IdentityUserClaims" Type="Self.IdentityUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserLogins_dbo_Users_User_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="IdentityUserLogins" Type="Self.IdentityUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserLogins">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_IdentityUserRoles_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="IdentityUserRoles" Type="Self.IdentityUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IdentityUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Images_dbo_Users_createdByUser_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Images" Type="Self.Images" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Images">
+              <PropertyRef Name="createdByUser_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Sites_dbo_Languages_language_id">
+          <End Role="Languages" Type="Self.Languages" Multiplicity="0..1" />
+          <End Role="Sites" Type="Self.Sites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Languages">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Sites">
+              <PropertyRef Name="language_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Menus_dbo_MenuTypes_menuType_id">
+          <End Role="MenuTypes" Type="Self.MenuTypes" Multiplicity="0..1" />
+          <End Role="Menus" Type="Self.Menus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuTypes">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Menus">
+              <PropertyRef Name="menuType_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Menus_dbo_Sites_site_id">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+          <End Role="Menus" Type="Self.Menus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Menus">
+              <PropertyRef Name="site_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CategoryToRole">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="*" />
+          <End Role="IdentityRoles" Type="Self.IdentityRoles" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="UspaIdentityDb" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__MigrationHistory" EntityType="Self.C__MigrationHistory" />
+          <EntitySet Name="Albums" EntityType="Self.Albums" />
+          <EntitySet Name="Banners" EntityType="Self.Banners" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" />
+          <EntitySet Name="Contents" EntityType="Self.Contents" />
+          <EntitySet Name="IdentityRoles" EntityType="Self.IdentityRoles" />
+          <EntitySet Name="IdentityUserClaims" EntityType="Self.IdentityUserClaims" />
+          <EntitySet Name="IdentityUserLogins" EntityType="Self.IdentityUserLogins" />
+          <EntitySet Name="IdentityUserRoles" EntityType="Self.IdentityUserRoles" />
+          <EntitySet Name="Images" EntityType="Self.Images" />
+          <EntitySet Name="Languages" EntityType="Self.Languages" />
+          <EntitySet Name="Menus" EntityType="Self.Menus" />
+          <EntitySet Name="MenuTypes" EntityType="Self.MenuTypes" />
+          <EntitySet Name="Sites" EntityType="Self.Sites" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_dbo_Albums_dbo_Languages_language_id" Association="Self.FK_dbo_Albums_dbo_Languages_language_id">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="Albums" EntitySet="Albums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Albums_dbo_Users_createdByUser_Id" Association="Self.FK_dbo_Albums_dbo_Users_createdByUser_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Albums" EntitySet="Albums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Albums_dbo_Users_modifiedByUser_Id" Association="Self.FK_dbo_Albums_dbo_Users_modifiedByUser_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Albums" EntitySet="Albums" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Images_dbo_Albums_album_id" Association="Self.FK_dbo_Images_dbo_Albums_album_id">
+            <End Role="Albums" EntitySet="Albums" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Banners_dbo_Sites_site_id" Association="Self.FK_dbo_Banners_dbo_Sites_site_id">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Banners" EntitySet="Banners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Categories_dbo_Languages_language_id" Association="Self.FK_dbo_Categories_dbo_Languages_language_id">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Categories_dbo_Users_createdByUser_Id" Association="Self.FK_dbo_Categories_dbo_Users_createdByUser_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Contents_dbo_Categories_category_id" Association="Self.FK_dbo_Contents_dbo_Categories_category_id">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Contents_dbo_Sites_site_id" Association="Self.FK_dbo_Contents_dbo_Sites_site_id">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Contents_dbo_Users_createdByUser_Id" Association="Self.FK_dbo_Contents_dbo_Users_createdByUser_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Contents_dbo_Users_modifiedByUser_Id" Association="Self.FK_dbo_Contents_dbo_Users_modifiedByUser_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Contents" EntitySet="Contents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Menus_dbo_Contents_сontent_id" Association="Self.FK_dbo_Menus_dbo_Contents_сontent_id">
+            <End Role="Contents" EntitySet="Contents" />
+            <End Role="Menus" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id" Association="Self.FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id">
+            <End Role="IdentityRoles" EntitySet="IdentityRoles" />
+            <End Role="IdentityUserRoles" EntitySet="IdentityUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserClaims_dbo_Users_UserId" Association="Self.FK_dbo_IdentityUserClaims_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="IdentityUserClaims" EntitySet="IdentityUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserLogins_dbo_Users_User_Id" Association="Self.FK_dbo_IdentityUserLogins_dbo_Users_User_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="IdentityUserLogins" EntitySet="IdentityUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_IdentityUserRoles_dbo_Users_UserId" Association="Self.FK_dbo_IdentityUserRoles_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="IdentityUserRoles" EntitySet="IdentityUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Images_dbo_Users_createdByUser_Id" Association="Self.FK_dbo_Images_dbo_Users_createdByUser_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Images" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Sites_dbo_Languages_language_id" Association="Self.FK_dbo_Sites_dbo_Languages_language_id">
+            <End Role="Languages" EntitySet="Languages" />
+            <End Role="Sites" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Menus_dbo_MenuTypes_menuType_id" Association="Self.FK_dbo_Menus_dbo_MenuTypes_menuType_id">
+            <End Role="MenuTypes" EntitySet="MenuTypes" />
+            <End Role="Menus" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Menus_dbo_Sites_site_id" Association="Self.FK_dbo_Menus_dbo_Sites_site_id">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="Menus" EntitySet="Menus" />
+          </AssociationSet>
+          <AssociationSet Name="CategoryToRole" Association="Self.CategoryToRole">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="IdentityRoles" EntitySet="IdentityRoles" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UspaIdentityDbModelStoreContainer" CdmEntityContainer="UspaIdentityDb">
+          <EntitySetMapping Name="C__MigrationHistory">
+            <EntityTypeMapping TypeName="UspaIdentityDbModel.C__MigrationHistory">
+              <MappingFragment StoreEntitySet="__MigrationHistory">
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
+                <ScalarProperty Name="ContextKey" ColumnName="ContextKey" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Albums">
+            <EntityTypeMapping TypeName="UspaIdentityDbModel.Albums">
+              <MappingFragment StoreEntitySet="Albums">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="previd" ColumnName="previd" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="createdByUser_Id" ColumnName="createdByUser_Id" />
+                <ScalarProperty Name="language_id" ColumnName="language_id" />
+                <ScalarProperty Name="modifiedByUser_Id" ColumnName="modifiedByUser_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banners">
+            <EntityTypeMapping TypeName="UspaIdentityDbModel.Banners">
+              <MappingFragment StoreEntitySet="Banners">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="site_id" ColumnName="site_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="UspaIdentityDbModel.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="previd" ColumnName="previd" />
+                <ScalarProperty Name="createdTime" ColumnName="createdTime" />
+                <ScalarProperty Name="published" ColumnName="published" />
+                <ScalarProperty Name="createdByUser_Id" ColumnName="createdByUser_Id" />
+                <ScalarProperty Name="language_id" ColumnName="language_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contents">
+            <EntityTypeMapping TypeName="UspaIdentityDbModel.Contents">
+              <MappingFragment StoreEntitySet="Contents">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="previd" ColumnName="previd" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="introtext" ColumnName="introtext" />
+                <ScalarProperty Name="fulltext" ColumnName="fulltext" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="modified" ColumnName="modified" />
+                <ScalarProperty Name="published" ColumnName="published" />
+                <ScalarProperty Name="checkIn" ColumnName="checkIn" />
+                <ScalarProperty Name="checkOut" ColumnName="checkOut" />
+                <ScalarProperty Name="category_id" ColumnName="category_id" />
+                <ScalarProperty Name="createdByUser_Id" ColumnName="createdByUser_Id" />
+                <ScalarProperty Name="modifiedByUser_Id" ColumnName="modifiedByUser_Id" />
+                <ScalarProperty Name="site_id" ColumnName="site_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityRoles">
+            <EntityTypeMapping TypeName="UspaIdentityDbModel.IdentityRoles">
+              <MappingFragment StoreEntitySet="IdentityRoles">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Discriminator" ColumnName="Discriminator" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityUserClaims">
+            <EntityTypeMapping TypeName="UspaIdentityDbModel.IdentityUserClaims">
+              <MappingFragment StoreEntitySet="IdentityUserClaims">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityUserLogins">
+            <EntityTypeMapping TypeName="UspaIdentityDbModel.IdentityUserLogins">
+              <MappingFragment StoreEntitySet="IdentityUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="User_Id" ColumnName="User_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IdentityUserRoles">
+            <EntityTypeMapping TypeName="UspaIdentityDbModel.IdentityUserRoles">
+              <MappingFragment StoreEntitySet="IdentityUserRoles">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="IdentityRole_Id" ColumnName="IdentityRole_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="UspaIdentityDbModel.Images">
+              <MappingFragment StoreEntitySet="Images">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="filePath" ColumnName="filePath" />
+                <ScalarProperty Name="created" ColumnName="created" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="album_id" ColumnName="album_id" />
+                <ScalarProperty Name="createdByUser_Id" ColumnName="createdByUser_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Languages">
+            <EntityTypeMapping TypeName="UspaIdentityDbModel.Languages">
+              <MappingFragment StoreEntitySet="Languages">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="UspaIdentityDbModel.Menus">
+              <MappingFragment StoreEntitySet="Menus">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="previd" ColumnName="previd" />
+                <ScalarProperty Name="parentidPrev" ColumnName="parentidPrev" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="menuType_id" ColumnName="menuType_id" />
+                <ScalarProperty Name="site_id" ColumnName="site_id" />
+                <ScalarProperty Name="сontent_id" ColumnName="сontent_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuTypes">
+            <EntityTypeMapping TypeName="UspaIdentityDbModel.MenuTypes">
+              <MappingFragment StoreEntitySet="MenuTypes">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sites">
+            <EntityTypeMapping TypeName="UspaIdentityDbModel.Sites">
+              <MappingFragment StoreEntitySet="Sites">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="countContent" ColumnName="countContent" />
+                <ScalarProperty Name="language_id" ColumnName="language_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="UspaIdentityDbModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="prevId" ColumnName="prevId" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="registerDate" ColumnName="registerDate" />
+                <ScalarProperty Name="lastVisitDate" ColumnName="lastVisitDate" />
+                <ScalarProperty Name="block" ColumnName="block" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CategoryToRole" TypeName="UspaIdentityDbModel.CategoryToRole" StoreEntitySet="CategoryToRole">
+            <EndProperty Name="Categories">
+              <ScalarProperty Name="id" ColumnName="RoleId" />
+            </EndProperty>
+            <EndProperty Name="IdentityRoles">
+              <ScalarProperty Name="Id" ColumnName="CategoryId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

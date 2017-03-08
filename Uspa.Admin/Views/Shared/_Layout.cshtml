@@ -1,0 +1,202 @@
+﻿@using Microsoft.AspNet.Identity
+
+
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Админ панель</title>
+
+    <!-- Bootstrap -->
+    <link href="~/Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="~/Content/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+    <link href="~/Content/vendors/easypiechart/jquery.easy-pie-chart.css" rel="stylesheet" media="screen">
+    <link href="~/Content/assets/styles.css" rel="stylesheet" media="screen">
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="~/Content/vendors/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script src="~/Content/vendors/jquery-1.9.1.min.js"></script>
+    <script src="~/Content/vendors/jquery-validation/lib/jquery.form.js"></script>
+    <script src="~/Content/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/vendors/easypiechart/jquery.easy-pie-chart.js"></script>
+    <script src="~/Content/assets/scripts.js"></script>
+    <script>
+        $(function() {
+            // Easy pie charts
+            $('.chart').easyPieChart({animate: 1000});
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+
+                <a class="brand" href="#">Панель управления</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav pull-right">
+
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+    </ul>
+}
+                    </ul>
+     
+                    <ul class="nav">
+                        <li class="active">
+                            <a href="@Url.Action("Index", "Home")">Главная</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="@Url.Action("Index", "Banners")">
+                                Banners 
+                            </a>
+                        </li>   
+                        <li class="dropdown">
+                            <a href="@Url.Action("Index", "Menus")" role="button">
+                                Menus
+                            </a>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                Gallery<i class="caret"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    @Html.ActionLink("Albums", "Index", "Albums", new { area = "" }, null)
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Images", "Index", "Images", new { area = "" }, null)
+                                </li>                            
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="@Url.Action("Index", "Sites")" role="button">
+                                Sites
+                            </a>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                Content<i class="caret"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    
+                                    @Html.ActionLink("Content", "Index", "Contents", new { area = "" }, null)
+
+                                </li>
+                                <li>
+                                    @Html.ActionLink("Categories", "Index", "Categories", new { area = "" }, null)
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="dropdown">
+                            <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                                Users<i class="caret"></i>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    @Html.ActionLink("Users", "Index", "Users", new { area = "" }, null)
+                                </li>
+                                <li>
+                                    @Html.ActionLink("User groups", "Index", "UserGroups", new { area = "" }, null)
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        @*<div class="row-fluid">*@
+            @*<div class="span3" id="sidebar">
+                <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+                    <li class="active">
+                        <a href="index.html"><i class="icon-chevron-right"></i> Сайт</a>
+                    </li>
+                    <li>
+                        <a href="calendar.html"><i class="icon-chevron-right"></i> Пользователи</a>
+                    </li>
+                    <li>
+                        <a href="../Content/Index"><i class="icon-chevron-right"></i> Материалы</a>
+                    </li>
+                    <li>
+                        <a href="form.html"><i class="icon-chevron-right"></i> Компоненты</a>
+                    </li>
+                    <li>
+                        <a href="tables.html"><i class="icon-chevron-right"></i> Расширения</a>
+                    </li>
+                    <li>
+                        <a href="buttons.html"><i class="icon-chevron-right"></i> Справка</a>
+                    </li>
+                    <li>
+                        <a href="editors.html"><i class="icon-chevron-right"></i> Меню</a>
+                    </li>
+                    <li>
+                        <a href="interface.html"><i class="icon-chevron-right"></i> UI & Interface</a>
+                    </li>
+                  
+                    <li>
+                        <a href="#"><span class="badge badge-important pull-right">83</span> Errors</a>
+                    </li>
+                    <li>
+                        <a href="#"><span class="badge badge-warning pull-right">4,231</span> Logs</a>
+                    </li>
+                </ul>
+            </div>*@
+
+            <!--/span-->
+
+            <div class="span12 row-fluid" id="content">
+                @RenderBody()
+
+            </div>
+
+        @*</div>*@
+        <hr>
+        <footer>
+            <p>&copy; Администрация морских портов Украины</p>
+        </footer>
+    </div>
+
+
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

@@ -1,0 +1,103 @@
+﻿@model PagedList.IPagedList<Uspa.Domain.LocalDb.Categories>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Index</h2>
+
+@*Sercher*@
+<form method="get">
+    <div class="form-inline">
+        <p>
+            <label class="control-label"> Find by title: </label>
+            @Html.TextBox("search", ViewBag.Search as string, new { @class = "form-control" })
+            <input type="submit" value="search" class="btn btn-default" />
+        </p>
+    </div>
+</form>
+
+@*Filters*@
+<form method="get">
+    <div class="form-inline">
+        <label class="control-label">Language: </label>
+        @Html.DropDownList("language", ViewBag.Language as SelectList,
+                    htmlAttributes: new { @class = "form-control" })
+
+        <label class="control-label">UserGroup: </label>
+        @Html.DropDownList("userGroup", ViewBag.UserGroup as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+
+        <input type="submit" value="Filter" class="btn btn-default" />
+    </div>
+</form>
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Title","Index","Categories",routeValues: new { orderFeild = "title", prevOrder = ViewBag.PrevState, search = ViewBag.SearchState, language = ViewBag.LangState , userGroup = ViewBag.UsGrState }, htmlAttributes: null)
+        </th>
+        <th>
+            @Html.ActionLink("CreatedTime", "Index", "Categories", routeValues: new { orderFeild = "createdTime", prevOrder = ViewBag.PrevState, search = ViewBag.SearchState, language = ViewBag.LangState, userGroup = ViewBag.UsGrState }, htmlAttributes: null)      
+        </th>
+        <th>
+            Published
+        </th>
+        <th>
+            @*@Html.ActionLink("Language", "Index", "Categories", routeValues: new { orderFeild = "language", prev = ViewBag.Prev, search = ViewBag.Search }, htmlAttributes: null)*@
+            Language
+        </th>
+        <th>
+            @Html.ActionLink("User", "Index", "Categories", routeValues: new { orderFeild = "user", prevOrder = ViewBag.PrevState, search = ViewBag.SearchState, language = ViewBag.LangState, userGroup = ViewBag.UsGrState }, htmlAttributes: null)                   
+        </th>
+        <th>
+            UserGroups
+        </th>
+        <th>
+        </th>
+   </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        @Html.HiddenFor(modelItem => item.previd)
+        <td>
+            @Html.DisplayFor(modelItem => item.createdTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.published)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Languages.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Users.name)
+        </td>
+        <td>
+            @foreach (var element in item.UserGroups)
+            {
+                @Html.DisplayFor(x => element.title)
+                <br/>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) from @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

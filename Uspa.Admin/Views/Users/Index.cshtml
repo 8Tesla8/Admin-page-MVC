@@ -1,0 +1,113 @@
+﻿@model PagedList.IPagedList<Uspa.Domain.LocalDb.Users>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@*Sercher*@
+<form method="get">
+    <div class="form-inline">
+        <p>
+            <label class="control-label"> Find by name: </label>
+            @Html.TextBox("search", ViewBag.Search as string, new { @class = "form-control" })
+            <input type="submit" value="search" class="btn btn-default" />
+        </p>
+    </div>
+</form>
+
+@*Filters*@
+<form method="get">
+    <div class="form-inline">
+        <label class="control-label">UserGroup: </label>
+        @Html.DropDownList("userGroup", ViewBag.UserGroup as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+
+        <input type="submit" value="Filter" class="btn btn-default" />
+    </div>
+</form>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.name)*@
+            @Html.ActionLink("Name", "Index", "Users", routeValues: new
+            {
+                orderFeild = "name",
+                prevOrder = ViewBag.PrevState,
+                search = ViewBag.SearchState,
+                userGroup = ViewBag.UsGrState
+            }, htmlAttributes: null)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.userName)*@ username ???
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.email)*@
+            @Html.ActionLink("Email", "Index", "Users", routeValues: new { orderFeild = "email", prevOrder = ViewBag.PrevState, search = ViewBag.SearchState, userGroup = ViewBag.UsGrState }, htmlAttributes: null)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.email)*@User groups
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.registerDate)*@
+            @Html.ActionLink("Registration date", "Index", "Users", routeValues: new { orderFeild = "registerDate", prevOrder = ViewBag.PrevState, search = ViewBag.SearchState, userGroup = ViewBag.UsGrState }, htmlAttributes: null)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.lastVisitDate)*@
+            @Html.ActionLink("Last visit date", "Index", "Users", routeValues: new { orderFeild = "lastVisitDate", prevOrder = ViewBag.PrevState, search = ViewBag.SearchState, userGroup = ViewBag.UsGrState }, htmlAttributes: null)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.block)*@ block
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @foreach (var item1 in item.UserGroups)
+            {
+                @Html.DisplayFor(m=> item1.title)
+                <br>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.registerDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastVisitDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.block)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) from @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

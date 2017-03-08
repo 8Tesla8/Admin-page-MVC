@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="316c9bda0e364e94b4523c1ed575d6ad" Name="Diagram1">
+        <EntityTypeShape EntityType="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.Albums" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.Banners" Width="1.5" PointX="5.25" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.Categories" Width="1.5" PointX="6" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.Contents" Width="1.5" PointX="15.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.Images" Width="1.5" PointX="12.75" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.Languages" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.Menus" Width="1.5" PointX="18" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.MenuTypes" Width="1.5" PointX="15.75" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.Sites" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.UserGroups" Width="1.5" PointX="8.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.Users" Width="1.5" PointX="10.5" PointY="13.5" IsExpanded="true" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Albums_dbo_Languages_language_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Albums_dbo_Users_createdByUser_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Albums_dbo_Users_modifiedByUser_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Images_dbo_Albums_album_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Banners_dbo_Sites_site_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Categories_dbo_Languages_language_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Categories_dbo_Users_createdByUser_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Contents_dbo_Categories_category_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Contents_dbo_Sites_site_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Contents_dbo_Users_createdByUser_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Contents_dbo_Users_modifiedByUser_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Menus_dbo_Contents_сontent_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Images_dbo_Users_createdByUser_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Sites_dbo_Languages_language_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Menus_dbo_MenuTypes_menuType_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.FK_dbo_Menus_dbo_Sites_site_id" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.CategoryToUserGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="Uspa.Domain.CodeFirst.UspaDbContextEntityModel.UserToUserGroup" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

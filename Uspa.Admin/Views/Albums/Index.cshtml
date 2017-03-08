@@ -1,0 +1,78 @@
+﻿@model PagedList.IPagedList<Uspa.Domain.LocalDb.Albums>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@*Searcher*@
+<form method="get">
+    <div class="form-inline">
+        <p>
+            <label class="control-label"> Find by title: </label>
+            @Html.TextBox("search", ViewBag.Search as string, new { @class = "form-control" })
+             <div class="form-inline">
+        <label class="control-label">Language: </label>
+        @Html.DropDownList("language", ViewBag.Language as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+
+        <input type="submit" value="Filter" class="btn btn-default" />
+    </div>
+            <input type="submit" value="search" class="btn btn-default" />
+        </p>
+    </div>
+</form>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].title)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model[0].created)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].modified)
+        </th>
+        <th>
+            @Html.Raw("Lenuage ")@Html.DisplayNameFor( model =>model[0].Languages.title)
+        </th>
+        <th></th>
+    </tr>   
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.created)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.modified)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Languages.title)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
+Page @(Model.PageCount < Model.PageCount ? 0 : Model.PageNumber) from @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

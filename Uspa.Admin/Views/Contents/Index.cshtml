@@ -1,0 +1,159 @@
+﻿@*@model PagedList.IPagedList<Uspa.Domain.LocalDb.Contents>*@
+@model PagedList.IPagedList<Uspa.Admin.ViewModel.ContentViewModel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+@using (Html.BeginForm("Index", "Contents", new
+{
+    prevOrder = ViewBag.PrevState,
+    search = ViewBag.SearchState,
+    category = ViewBag.CategoryState,
+    site = ViewBag.SiteState
+}, FormMethod.Get))
+{
+    @*Sercher*@
+    <div class="form-inline">
+        <p>
+            <label class="control-label"> Find by title: </label>
+            @Html.TextBox("search", null, new { @class = "form-control" })
+            <input type="submit" value="search" class="btn btn-default" />
+        </p>
+    </div>
+
+    @*Filters*@
+    <div class="form-inline">
+        <label class="control-label">Category: </label>
+        @Html.DropDownList("category", ViewBag.category as SelectList,
+                    htmlAttributes: new { @class = "form-control" })
+
+        <label class="control-label">Site: </label>
+        @Html.DropDownList("site", ViewBag.site as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+
+        <input type="submit" value="Filter" class="btn btn-default" />
+    </div>
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].introtext)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].state)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.created)*@
+            @Html.ActionLink("Created", "Index", "Contents", routeValues: new
+       {
+           orderFeild = "created",
+           prevOrder = ViewBag.PrevState,
+           search = ViewBag.SearchState,
+           category = ViewBag.CategoryState,
+           site = ViewBag.SiteState
+       }, htmlAttributes: null)
+        </th>
+        <th>
+            @*@Html.DisplayNameFor(model => model.modified)*@
+            @Html.ActionLink("Modified", "Index", "Contents", routeValues: new
+       {
+           orderFeild = "modified",
+           prevOrder = ViewBag.PrevState,
+           search = ViewBag.SearchState,
+           category = ViewBag.CategoryState,
+           site = ViewBag.SiteState
+       }, htmlAttributes: null)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].published)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].checkIn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].checkOut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].category.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].site.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].createdByUser.name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].modifiedByUser.name)
+        </th>
+        <th></th>
+    </tr>
+
+    @*@foreach (var item in Model)*@
+    @for(int i = 0 ; i< Model.Count;i++)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].title)
+            </td>
+            <td>
+                @Html.Raw(Model[i].introtext);
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].state)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].created)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].modified)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].published)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].checkIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].checkOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].category.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].site.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].createdByUser.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model[i].modifiedByUser.name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = Model[i].id }) |
+                @Html.ActionLink("Details", "Details", new { id = Model[i].id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = Model[i].id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br/>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) from @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

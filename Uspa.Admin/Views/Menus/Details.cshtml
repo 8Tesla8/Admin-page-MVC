@@ -1,0 +1,107 @@
+﻿@model Uspa.Domain.LocalDb.Menus
+
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h2>Details</h2>
+
+    <div>
+        <h4>Menus</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            @*<dt>
+                    @Html.DisplayNameFor(model => model.previd)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.previd)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.parentidPrev)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.parentidPrev)
+                </dd>*@
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.parentid)*@ Parent Id
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.parentid)
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.title)*@ Title
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.title)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.state)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.state)
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.Contents.title)*@ Contents
+            </dt>
+
+            <dd>
+                @* Если поле пустое делаем просто бр чтобы верстка не ехала :\ *@
+                @if (Model.Contents == null || Model.Contents.title == null)
+                {
+                    <br />
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.Contents.title)
+                }
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.MenuTypes.title)*@ Menu type
+            </dt>
+
+            <dd>
+                @if (Model.MenuTypes == null || Model.MenuTypes.title == null)
+                {
+                    <br />
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.MenuTypes.title)
+                }
+            </dd>
+
+            <dt>
+                @*@Html.DisplayNameFor(model => model.Sites.title)*@ Sites
+            </dt>
+
+            <dd>
+                @if (Model.Sites == null || Model.Sites.title == null)
+                {
+                    <br />
+                }
+                else
+                {
+                    @Html.DisplayFor(model => model.Sites.title)
+                }
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>

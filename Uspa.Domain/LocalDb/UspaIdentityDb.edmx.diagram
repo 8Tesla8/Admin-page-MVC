@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="26a88f0ce35d45dda6d6fc5eb82fe471" Name="Diagram1">
+        <EntityTypeShape EntityType="UspaIdentityDbModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="UspaIdentityDbModel.Albums" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UspaIdentityDbModel.Banners" Width="1.5" PointX="11.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="UspaIdentityDbModel.Categories" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UspaIdentityDbModel.Contents" Width="1.5" PointX="11.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UspaIdentityDbModel.IdentityRoles" Width="1.5" PointX="8.25" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UspaIdentityDbModel.IdentityUserClaims" Width="1.5" PointX="3" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UspaIdentityDbModel.IdentityUserLogins" Width="1.5" PointX="3" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UspaIdentityDbModel.IdentityUserRoles" Width="1.5" PointX="10.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="UspaIdentityDbModel.Images" Width="1.5" PointX="8.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="UspaIdentityDbModel.Languages" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="UspaIdentityDbModel.Menus" Width="1.5" PointX="13.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="UspaIdentityDbModel.MenuTypes" Width="1.5" PointX="11.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UspaIdentityDbModel.Sites" Width="1.5" PointX="9" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="UspaIdentityDbModel.Users" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Albums_dbo_Languages_language_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Albums_dbo_Users_createdByUser_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Albums_dbo_Users_modifiedByUser_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Images_dbo_Albums_album_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Banners_dbo_Sites_site_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Categories_dbo_Languages_language_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Categories_dbo_Users_createdByUser_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Contents_dbo_Categories_category_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Contents_dbo_Sites_site_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Contents_dbo_Users_createdByUser_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Contents_dbo_Users_modifiedByUser_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Menus_dbo_Contents_сontent_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_IdentityUserRoles_dbo_IdentityRoles_IdentityRole_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_IdentityUserClaims_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_IdentityUserLogins_dbo_Users_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_IdentityUserRoles_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Images_dbo_Users_createdByUser_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Sites_dbo_Languages_language_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Menus_dbo_MenuTypes_menuType_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.FK_dbo_Menus_dbo_Sites_site_id" ManuallyRouted="false" />
+        <AssociationConnector Association="UspaIdentityDbModel.CategoryToRole" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

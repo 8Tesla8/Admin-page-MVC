@@ -1,0 +1,14 @@
+.vs/
+.vs/Uspa.WebPortal/v14/
+Uspa.Admin/bin/
+Uspa.Admin/obj/Debug/
+Uspa.Admin.Test/obj/Debug/
+Uspa.Domain/bin/Debug/
+Uspa.Domain/obj/Debug/
+Uspa.Domain.csprojResolveAssemlyReference.cache
+Uspa.Domain.dll
+Uspa.Domain.pdb
+Uspa.Admin.Tests/bin/
+Uspa.Admin.Tests/obj/
+Uspa.WebUI/bin/
+Uspa.WebUI/obj/
